@@ -14,16 +14,21 @@ mongoose.connect('mongodb+srv://acces:acces2019@dbdame-tlsv3.mongodb.net/test?re
                       index:true
                   },
                   password:{
-                      type:String
+                      type:String,
+                      required: true 
+                      
                   },
                   email:{
-                      type:String
+                      type:String,
+                      required: true 
                   },
                   name:{
-                      type:String
+                      type:String,
+                      required: true 
                   }
               });
 var User=module.exports=mongoose.model('User',UserSchema);
+
 module.exports.createUser=function(newUser,callback)
 {
     bcrypt.genSalt(10,function(err,salt)
