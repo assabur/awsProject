@@ -1,34 +1,52 @@
+
+
+
+
+
+
+
+
+
+
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-// Load User model
+// chargement du modele 
 const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
 
-// Login Page
+// on definit la route vers la page d'aceuill en s'assurant que l'user s'est authentifié
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
-// Register Page
+// on definit la route vers la page de connexion en s'assurant que l'user s'est authentifié
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
-// Register
+// c'est a ce niveau que ce fait la gestion du formulaire
+
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
-  let errors = [];
+  let errors = [];//declaration d'une variable locale qui memeorise les erreurs lors de l'enregistrement de l'user
 
   if (!name || !email || !password || !password2) {
-    errors.push({ msg: 'Please enter all fields' });
+    errors.push({ msg: 'Svp entrer tous les champs requis' });
   }
 
   if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
+    errors.push({ msg: 'les deux mots de passes ne correspondent pas' });
   }
-
-  if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
+/*
+  if (name.length < 256) {
+    errors.push({ msg: 'la taille de champ nom ne doit pas depasser 256 caractères' });
+  }*/
+  if (password.length < 6 && password.length <32) {
+    errors.push({ msg: 'Votre mot de passe doit contenir au minimum 8 caractères' });
   }
-
+  if (password.length >32) {
+    errors.push({ msg: 'la taille de votre mot de passe ne doit depassé plus de 32 ' });
+  }
+//si il ya eu des erreurs on les passe a la page register avec  name ,email etc
   if (errors.length > 0) {
     res.render('register', {
       errors,
@@ -40,7 +58,7 @@ router.post('/register', (req, res) => {
   } else {
     User.findOne({ email: email }).then(user => {
       if (user) {
-        errors.push({ msg: 'Email already exists' });
+        errors.push({ msg: 'Email déja existants' });
         res.render('register', {
           errors,
           name,
@@ -54,17 +72,17 @@ router.post('/register', (req, res) => {
           email,
           password
         });
-
-        bcrypt.genSalt(10, (err, salt) => {
+//on hash le mot de passe que l'on stocke
+        bcrypt.genSalt(10, (err, salt) => { //Longueur de salt à générer par défaut à 10
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
             newUser.password = hash;
-            newUser
+            newUser//on stocke dans la BD
               .save()
               .then(user => {
                 req.flash(
                   'success_msg',
-                  'You are now registered and can log in'
+                  'vous etes maintenant enregistrez avec succes'
                 );
                 res.redirect('/users/login');
               })
@@ -88,7 +106,7 @@ router.post('/login', (req, res, next) => {
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('success_msg', 'You are logged out');
+  req.flash('success_msg', 'Vous etes bien deconnecté');
   res.redirect('/users/login');
 });
 

@@ -1,27 +1,29 @@
+// declarations des constantes requises
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
-// Load User model
+// chargons le modele USer
 const User = require('../models/User');
 
 module.exports = function(passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      // Match user
+      // a cette etape on verifie la correspondance des emails
       User.findOne({
         email: email
       }).then(user => {
         if (!user) {
-          return done(null, false, { message: 'That email is not registered' });
+          return done(null, false, { message: 'cet email n '/'est pas enregistré' });
         }
 
-        // Match password
+        // on verifie la coresspondance des mots de passe hachés remarque: l'orsque les mots de passes ne sont pas identiques
+        //pour une notion de securité on precise juste à l'user que les identifiants saisis sont incorrectes
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             return done(null, user);
           } else {
-            return done(null, false, { message: 'Password incorrect' });
+            return done(null, false, { message: 'Les identifiants saisis sont incorrectes ' });
           }
         });
       });
