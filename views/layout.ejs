@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+        <script src='https://www.google.com/recaptcha/api.js?render={{ 6LfRBuQUAAAAAPGCE2-kSmoMBGxWSTAFyKfghRwr}}' async defer>
+<script>
+    grecaptcha.ready(async () => {
+        const token = await grecaptcha.execute({{ 6LfRBuQUAAAAAPGCE2-kSmoMBGxWSTAFyKfghRwr }}, { action: {{ ACTION }} })
+    })
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -8,6 +14,12 @@
     <link
       rel="stylesheet"
       href="https://bootswatch.com/4/journal/bootstrap.min.css"
+    />
+      <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+      crossorigin="anonymous"
     />
     <title>jeu de dame</title>
   </head>
@@ -29,5 +41,27 @@
       integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
       crossorigin="anonymous"
     ></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script>
+      document.getElementById('subscribeForm').addEventListener('submit', e => {
+        e.preventDefault();
+
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        const captcha = document.querySelector('#g-recaptcha-response').value;
+
+        return fetch('/captcha', {
+          method: 'POST',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ name, email, captcha })
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            alert(data.msg);
+            if (data.success) return location.reload();
+          });
+      });
+    </script>
   </body>
 </html>
