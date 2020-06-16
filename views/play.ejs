@@ -1,0 +1,30 @@
+<div class="dashboard_party">
+    <h1 class="mt-4">
+      <div id="principal_partie" class="mt-4">Partie <%= user.name %></div>
+  </h1>
+      
+    <p class="lead mb-3"><h4 id="principal_status" class="damier">En attente de l'autre joueur</h4> </p>
+  <p class="lead mb-3"><h4 id="principal_tour" class="damier"></h4> </p>
+</div>
+    
+    <div class="liste">
+        <h3>Boite de dialogue</h3>
+        </div>
+<div class="jeu">
+<h3> <div id="principal" class="damier"></div></h3>
+</div>
+
+<nav id="nav" class="col-sm-2" role="navigation">
+    <ul class="nav nav-tabs nav-stacked">
+
+        <li class="nav-divider"></li>
+        <li>
+            <a  href="/users/logout" class="btn btn-danger"><span class="glyphicon glyphicon-off">Déconnexion</span></a>
+            <a id="logout" href="/dashboard" class="btn btn-warning"><span class="glyphicon glyphicon-off"></span>Quitter la partie</a>
+
+        </li>
+        <li class="nav-divider"></li>
+        <li><a href="#"><span class="glyphicon glyphicon-book"></span> A propos</a></li>
+        <li class="nav-divider"></li>
+    </ul>
+</nav>

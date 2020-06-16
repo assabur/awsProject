@@ -13,7 +13,8 @@ module.exports = function(passport) {
         email: email
       }).then(user => {
         if (!user) {
-          return done(null, false, { message: 'cet email n '/'est pas enregistré' });
+         // req.flash('error_msg ', 'Email n'/'est pas enregistré');
+          return done(null, false, { message : 'cet email n '/'est pas enregistré' });
         }
 
         // on verifie la coresspondance des mots de passe hachés remarque: l'orsque les mots de passes ne sont pas identiques
@@ -23,7 +24,7 @@ module.exports = function(passport) {
           if (isMatch) {
             return done(null, user);
           } else {
-            return done(null, false, { message: 'Les identifiants saisis sont incorrectes ' });
+            return done(null, false, { message : 'Les identifiants saisis sont incorrectes ' });
           }
         });
       });

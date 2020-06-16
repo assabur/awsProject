@@ -1,34 +1,51 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Se connecter</h1>
-      <% include ./partials/messages %>
-      <form action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Entrer votre mail"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Entrer votre mot de passe"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
-      </form>
-      <p class="lead mt-4">
-        Pas de compte ? <a href="/users/register">S'enregistrer</a>
-      </p>
-    </div>
-  </div>
-</div>
+
+       <div class="container2">
+              <!---heading---->
+              <form method="POST" action="/users/login">
+                     <header class="heading">Connexion au jeu de dames</header>
+                     <hr>
+                     </hr>
+                     <!---Form starting---->
+                     <%- include ('./partials/messages') %>
+                     <div class="row ">
+
+
+                            <div class="col-sm-12">
+                                   <div class="row">
+                                          <div class="col-xs-4">
+                                                 <label class="pass">E_mail :</label></div>
+                                          <div class="col-xs-7">
+                                                 <input type="email" name="email" id="email"
+                                                        placeholder="Entrez votre mail" class="form-control">
+                                          </div>
+                                   </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                   <div class="row">
+                                          <div class="col-xs-4">
+                                                 <label class="pass">Mot de passe :</label></div>
+                                          <div class="col-xs-7">
+                                                 <input type="password" name="password" id="password"
+                                                        placeholder="Entrez un mot de passe" class="form-control">
+                                          </div>
+                                   </div>
+                              <br/>
+                            </div>
+         
+                            
+                                   <input class="btn btn-warning" type="submit" name="forminscription"
+                                          value="Se connecter" />
+
+                           
+
+                     </div>
+
+              </form>
+
+              <p class="lead mt-4">
+                     Pas de compte ? <a href="/users/register">S'enregistrer</a>
+                   </p>
+
+
+       </div>

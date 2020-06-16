@@ -1,0 +1,77 @@
+.dashboard {
+    font-family: Georgia, serif;
+    background-image: url(img/container.jpg);
+    margin: 0 auto;
+    top: 30 px;
+    text-align: center;
+    opacity: 0.8;
+    box-shadow: 2px 5px 5px 0px #eee;
+    max-width: 500px;
+    padding-top: 0px;
+    margin-top: -20px;
+    height: 135px;
+  }
+.guide_jeu {
+  font-family: Georgia, serif;
+  background-image: url(img/container.jpg);
+  margin: 0 auto;
+  text-align: left;
+  opacity: 0.9;
+  box-shadow: 2px 5px 5px 0px #eee;
+  max-width: 500px;
+  padding-top: 0 px;
+  margin-top: -390px;
+  height: 400px;
+}
+
+
+  #nav{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    top:0px;
+    font-family: Georgia, serif;
+    background-image: url(img/container.jpg);
+    margin: 0 auto;
+    top: 30 px;
+    text-align: center;
+    opacity: 0.8;
+    box-shadow: 2px 5px 5px 0px #eee;
+    max-width: 500px;
+    padding-top: 0px;
+    margin-top: 30px;
+    height: 200px;
+  }
+
+  .dashboard_party {
+    font-family: Georgia, serif;
+    background-image: url(img/container.jpg);
+    margin: 0 auto;
+    top: 30 px;
+    text-align: center;
+    opacity: 0.8;
+    box-shadow: 2px 5px 5px 0px #eee;
+    max-width: 500px;
+    padding-top: 0px;
+    margin-top: -20px;
+    height: 120px;
+  }
+ #logout{
+
+      font-family: Georgia, serif;
+      opacity: 0.9;
+      margin-top: 5px;
+  }
+.jeu {
+  font-family: Georgia, serif;
+  background-image: url(img/container.jpg);
+  margin: 0 auto;
+  text-align: center;
+  opacity: 1;
+  box-shadow: 2px 5px 5px 0px #eee;
+  max-width: 500px;
+  padding-top: 0 px;
+  margin-top: -400px;
+  height: 500px;
+}
+

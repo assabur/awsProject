@@ -1,67 +1,103 @@
-<div class="row mt-5">
-  <div class="col-md6- m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> S'enregistrer
-      </h1>
-      <% include ./partials/messages %>
-      <form action="/users/register" method="POST">
-        <div class="form-group">
-          <label for="name">Nom</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Entrer votre nom"
-            value="<%= typeof name != 'undefined' ? name : '' %>"
-          />
+
+  <div class="container">
+    <!---heading---->
+    <%- include ('./partials/messages') %>
+    
+    <form id="comment_form" method="POST" action=" ">
+      <header class="heading"> Formulaire d'inscription</header>
+      <hr>
+      </hr>
+      <!---Form starting---->
+      <div class="row ">
+        <!-----Pour le pseudo---->
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-xs-4">
+              <label class="pass">Pseudo :</label></div>
+            <div class="col-xs-8">
+              <input type="name" id="name" name="name" class="form-control" placeholder="Entrer votre nom"
+                value="<%= typeof name != 'undefined' ? name : '' %>" />
+            </div>
+            
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Entrer votre Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
-          />
+        <!-----Pour le mail---->
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-xs-4">
+              <label class="pass">E_mail :</label></div>
+            <div class="col-xs-8">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Entrer votre Email"
+                value="<%= typeof email != 'undefined' ? email : '' %>" />
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Creer un mot de Passe"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
-          />
+
+        <!-----Pour le mot de passe et la confirmation---->
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-xs-4">
+              <label class="pass">Entrez un mot de passe :</label></div>
+            <div class="col-xs-8">
+              <input type="password" id="password" name="password" class="form-control"
+                placeholder="Creer un mot de Passe" value="<%= typeof password != 'undefined' ? password : '' %>" />
+            </div>
+          </div>
         </div>
-        <div >
-          <label for="password2">Confirmation du mot de passe</label>
-          <input
-            type="password"
-            id="password2"
-            name="password2"
-            class="form-control"
-            placeholder="Confirmer votre mot de  Passe"
-            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-          />
-        </div> </br>
-         
-        <div class="g-recaptcha", id="captcha", data-sitekey="6Lc1m-IUAAAAAKMBN8L8rJ4eUzPHSPRYb8DhvKj5"></div>
-       
-      </br>
-        <button type="submit" class="btn btn-primary btn-block">
-          Enregistrer vous
-        </button>       
-      </form>
-      <p class="lead mt-4">Avez vous déja un compte? <a href="/users/login">Connectez vous</a></p>
-      
-  </div>
-   </div>
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-xs-4">
+              <label class="pass">Confirmez votre mot de passe :</label></div>
+            <div class="col-xs-8">
+              <input type="password" id="password2" name="password2" class="form-control"
+                placeholder="Confirmer votre mot de  Passe"
+                value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+            </div>
+          </div>
+        </div>
+        <!-----Pour le captcha---->
+        <div class="col-xs-12 ">
+            </br>
+            <div class="g-recaptcha" , id="captcha" , data-sitekey="6LcSNfEUAAAAAEVXaH5eWM92OLVee5U_uKinTT_Z"></div>
+            </br>
+          
+        </div>
+
+
+        <!-----Pour le bouton d'enregistrement---->
+
+        <div class="col-sm-12">
+          <div class="row">
+          <div class="btn btn-warning">
+            <input class="btn btn-warning" type="submit" name="forminscription" value="S'inscrire" />
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </form>
+    <p class="lead mt-4">Avez vous déja un compte? <a href="/users/login">Connectez vous</a></p>
+
 
   </div>
-</div>
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#comment_form').submit(function() {
+        $(this).ajaxSubmit({
+          error: function(xhr) {
+            status('Error: ' + xhr.status);
+          },
+         success: function(response) {
+          console.log(response);
+         }
+        });
+        //Very important line, it disable the page refresh.
+        return false;
+      });
+    });
+  </script>.
